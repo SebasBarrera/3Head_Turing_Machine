@@ -28,7 +28,7 @@ public class Main {
 		turing = new Machine();
 	}
 	
-	private void read() {
+	public void read() {
 		long initial = System.currentTimeMillis();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(INPUT));
