@@ -15,6 +15,9 @@ public class Main {
 	public final static char ADD = 49;
 	public final static char REMOVE = 50;
 	public final static char NO_VALUE_TO_WRITE = 45;
+	public final static String INPUT = "data/input.txt";
+	public final static String OUTPUT = "data/input.txt";
+	public final static String EXAMPLE = "data/example.txt";
 	private Machine turing;
 	
 	public static void main(String[] args) {
@@ -28,8 +31,8 @@ public class Main {
 	private void read() {
 		long initial = System.currentTimeMillis();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("data/input.txt"));
-			BufferedWriter bw = new BufferedWriter(new FileWriter("data/output.txt"));
+			BufferedReader br = new BufferedReader(new FileReader(INPUT));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(OUTPUT));
 			String line = br.readLine();
 			while (line != null) {
 				int i = 0;
