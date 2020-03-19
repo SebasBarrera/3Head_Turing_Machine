@@ -1,3 +1,14 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Icesi University (Cali - Colombia)
+ * ICT Departments - Algoritmos y programación II
+ * Three Head Turing Machine
+ * @author: Juan Sebastián Barrera Pulido <juan.barrera4@correo.icesi.edu.co>
+ * Period: 2020-1
+ * 
+ * Last actualization : Wed  18  March  2020   22:12
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
 package ui;
 
 import java.io.BufferedReader;
@@ -9,6 +20,11 @@ import java.io.IOException;
 
 import model.*;
 
+/**
+ *	Main
+ *	This is the Main class.<br>
+ *	This class is the encharged to read and write the files.<br>
+ */
 public class Main {
 	
 	public final static char WRITE = 48;
@@ -18,16 +34,34 @@ public class Main {
 	public final static String INPUT = "data/input.txt";
 	public final static String OUTPUT = "data/input.txt";
 	public final static String EXAMPLE = "data/example.txt";
+	
 	private Machine turing;
 	
+	/**
+	 * <b>Description:</b> The <u><i>main method</i></u>.<br>
+	 * Here the program starts.
+	 * 
+	 * @param args: an array of the Strings that represents the arguments with which the program is invoked.<br> 
+	 */
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.read();
 	}
+	
+	/**
+	 * The constructor of the class.<br>
+	 * 
+	 * <b>Description:</b> Create an object of the Machine class.<br>
+	 */
 	public Main() {
 		turing = new Machine();
 	}
 	
+	/**
+	 * <b>Description:</b> The principal method of the program.<br>
+	 * Here the interaction with the files happens and print the time that will be taked in the program.<br>
+	 * 
+	 */
 	public void read() {
 		long initial = System.currentTimeMillis();
 		try {
