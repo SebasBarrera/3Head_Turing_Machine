@@ -32,7 +32,7 @@ public class Main {
 	public final static char REMOVE = 50;
 	public final static char NO_VALUE_TO_WRITE = 45;
 	public final static String INPUT = "data/input.txt";
-	public final static String OUTPUT = "data/input.txt";
+	public final static String OUTPUT = "data/output.txt";
 	public final static String EXAMPLE = "data/example.txt";
 	
 	private Machine turing;
@@ -51,7 +51,7 @@ public class Main {
 	/**
 	 * The constructor of the class.<br>
 	 * 
-	 * <b>Description:</b> Create an object of the Machine class.<br>
+	 * <b>Description:</b> Create an object of the Machine class.<br> 
 	 */
 	public Main() {
 		turing = new Machine();
