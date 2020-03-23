@@ -23,9 +23,9 @@ public class Machine {
 	public final static char MIDDLE = 49;
 	public final static char LAST = 50;
 	
+	private Element c0;
 	private Element c1;
 	private Element c2;
-	private Element c3;
 	private Element firstE;
 	private int amount;
 	
@@ -56,54 +56,54 @@ public class Machine {
 		Element toAdd = new Element(value);
 		if (firstE == null) {
 			firstE = toAdd;
+			c0 = toAdd;
 			c1 = toAdd;
 			c2 = toAdd;
-			c3 = toAdd;
 		} else {
 			switch (head) {
 				case FIRST:
-					toAdd.setNextE(c1);
-					c1.setPrevE(toAdd);
-					c1 = toAdd;
+					toAdd.setNextE(c0);
+					c0.setPrevE(toAdd);
+					c0 = toAdd;
 					firstE = toAdd;
 					if (amount == 1) {
-						c2 = c1;
+						c1 = c0;
 					} else if (!isEven()) {
-						c2 = c2.getPrevE();
+						c1 = c1.getPrevE();
 					} 
 				break;
 				case MIDDLE:
 					if (amount == 1) {
-						c1 = toAdd;
+						c0 = toAdd;
 						firstE = toAdd;
-						c3.setPrevE(toAdd);
-						toAdd.setNextE(c3);
+						c2.setPrevE(toAdd);
+						toAdd.setNextE(c2);
 					} else if (amount == 2) {
-						toAdd.setNextE(c3);
-						toAdd.setPrevE(c1);
-						c1.setNextE(toAdd);
-						c3.setPrevE(toAdd);
+						toAdd.setNextE(c2);
+						toAdd.setPrevE(c0);
+						c0.setNextE(toAdd);
+						c2.setPrevE(toAdd);
 					} else {
 						if (isEven()) {
-							toAdd.setPrevE(c2);
-							toAdd.setNextE(c2.getNextE());
-							c2.getNextE().setPrevE(toAdd);
-							c2.setNextE(toAdd);
+							toAdd.setPrevE(c1);
+							toAdd.setNextE(c1.getNextE());
+							c1.getNextE().setPrevE(toAdd);
+							c1.setNextE(toAdd);
 						} else {
-							toAdd.setNextE(c2);
-							toAdd.setPrevE(c2.getPrevE());		
-							c2.getPrevE().setNextE(toAdd);
-							c2.setPrevE(toAdd);
+							toAdd.setNextE(c1);
+							toAdd.setPrevE(c1.getPrevE());		
+							c1.getPrevE().setNextE(toAdd);
+							c1.setPrevE(toAdd);
 						}
 					}
-					c2 = toAdd;				
+					c1 = toAdd;				
 				break;
 				case LAST:
-					c3.setNextE(toAdd);
-					toAdd.setPrevE(c3);
-					c3 = toAdd;
+					c2.setNextE(toAdd);
+					toAdd.setPrevE(c2);
+					c2 = toAdd;
 					if (isEven())
-						c2 = c2.getNextE();
+						c1 = c1.getNextE();
 			} 
 		}
 		amount++;
@@ -128,13 +128,13 @@ public class Machine {
 		if (firstE != null) {
 			switch (head) {
 				case FIRST:
-					msg = c1.getValue();
+					msg = c0.getValue();
 				break;
 				case MIDDLE:
-					msg = c2.getValue();
+					msg = c1.getValue();
 				break;
 				case LAST:
-					msg = c3.getValue();
+					msg = c2.getValue();
 			}
 		}
 		return msg;
@@ -162,37 +162,37 @@ public class Machine {
 					case FIRST:
 						firstE = firstE.getNextE();
 						firstE.setPrevE(null); 
-						c1 = firstE;
+						c0 = firstE;
 						if (amount == 2) {
-							c2 = c1;
+							c1 = c0;
 						} else {
 							if (isEven())
-								c2 = c2.getNextE(); 
+								c1 = c1.getNextE(); 
 						}
 						
 					break;
 					case MIDDLE:
 						if (amount == 2) {
-							c1 = c3;
-							c2 = c3;
-							firstE = c1;
+							c0 = c2;
+							c1 = c2;
+							firstE = c0;
 						} else {
-							c2.getPrevE().setNextE(c2.getNextE());
-							if(c2.getNextE() != null)
-							c2.getNextE().setPrevE(c2.getPrevE());
+							c1.getPrevE().setNextE(c1.getNextE());
+							if(c1.getNextE() != null)
+							c1.getNextE().setPrevE(c1.getPrevE());
 							if (!isEven()) {
-								c2 = c2.getPrevE();
+								c1 = c1.getPrevE();
 							} else {
-								c2 = c2.getNextE();
+								c1 = c1.getNextE();
 							}
 						}
 					break;
 					case LAST:
-						c3 = c3.getPrevE();
-						c3.setNextE(null);
+						c2 = c2.getPrevE();
+						c2.setNextE(null);
 						if (amount != 2) {
 							if (!isEven())
-								c2 = c2.getPrevE();
+								c1 = c1.getPrevE();
 						}
 				}
 			}
@@ -209,9 +209,9 @@ public class Machine {
 	 */
 	public void removeAllElements() {
 		firstE = null;
+		c0 = null;
 		c1 = null;
 		c2 = null;
-		c3 = null;
 		amount = 0;
 	}
 	

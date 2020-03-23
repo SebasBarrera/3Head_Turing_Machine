@@ -107,7 +107,6 @@ public class Main {
 		long finalt = System.currentTimeMillis();
 		long time = finalt - initial;
 		System.out.println(time);
-		
 	}
 
 }
