@@ -26,7 +26,6 @@ public class Machine {
 	private Element c0;
 	private Element c1;
 	private Element c2;
-	private Element firstE;
 	private int amount;
 	
 	/**
@@ -54,8 +53,7 @@ public class Machine {
 	 */
 	public void addElement(char head, char value) {
 		Element toAdd = new Element(value);
-		if (firstE == null) {
-			firstE = toAdd;
+		if (c0 == null) {
 			c0 = toAdd;
 			c1 = toAdd;
 			c2 = toAdd;
@@ -65,7 +63,6 @@ public class Machine {
 					toAdd.setNextE(c0);
 					c0.setPrevE(toAdd);
 					c0 = toAdd;
-					firstE = toAdd;
 					if (amount == 1) {
 						c1 = c0;
 					} else if (!isEven()) {
@@ -75,7 +72,6 @@ public class Machine {
 				case MIDDLE:
 					if (amount == 1) {
 						c0 = toAdd;
-						firstE = toAdd;
 						c2.setPrevE(toAdd);
 						toAdd.setNextE(c2);
 					} else if (amount == 2) {
@@ -125,7 +121,7 @@ public class Machine {
 	 */
 	public char readElement(char head) {
 		char msg = '#';
-		if (firstE != null) {
+		if (c0 != null) {
 			switch (head) {
 				case FIRST:
 					msg = c0.getValue();
@@ -154,15 +150,14 @@ public class Machine {
 	 * @param head: Indicates where is going to be added the element to the list.<br>
 	 */
 	public void removeElement(char head) {
-		if (firstE != null) {
-			if (firstE.getNextE() == null) {
+		if (c0 != null) {
+			if (c0.getNextE() == null) {
 				removeAllElements();
 			} else {
 				switch (head) {
 					case FIRST:
-						firstE = firstE.getNextE();
-						firstE.setPrevE(null); 
-						c0 = firstE;
+						c0 = c0.getNextE();
+						c0.setPrevE(null); 
 						if (amount == 2) {
 							c1 = c0;
 						} else {
@@ -175,7 +170,6 @@ public class Machine {
 						if (amount == 2) {
 							c0 = c2;
 							c1 = c2;
-							firstE = c0;
 						} else {
 							c1.getPrevE().setNextE(c1.getNextE());
 							if(c1.getNextE() != null)
@@ -208,7 +202,6 @@ public class Machine {
 	 * <b>pos:</b> The size of the list will be cero.<br>
 	 */
 	public void removeAllElements() {
-		firstE = null;
 		c0 = null;
 		c1 = null;
 		c2 = null;
